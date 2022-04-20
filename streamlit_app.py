@@ -30,3 +30,11 @@ fruitvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_ch
 fruityvice_normalized = pandas.json_normalize(fruitvice_response.json())
 # Output as a table
 streamlit.dataframe(fruityvice_normalized)
+
+# Adding trial metadata account
+my_cnx = snowflake.connector.connect(**streamlit.scrrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
