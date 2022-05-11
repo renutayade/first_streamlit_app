@@ -1,0 +1,218 @@
+PREFIX : <http://api.stardog.com/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX stardog: <tag:stardog:api:>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_RESULT]
+}
+TO {
+  ?subject <http://api.stardog.com/C_RESULT#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_RESULT#COMMENTS> ?COMMENTS .
+  ?subject <http://api.stardog.com/C_RESULT#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_RESULT#ENTERED_BY> ?ENTERED_BY .
+  ?subject <http://api.stardog.com/C_RESULT#ENTERED_ON> ?ENTERED_ON_dateTime .
+  ?subject <http://api.stardog.com/C_RESULT#INSTRUMENT_USED> ?INSTRUMENT_USED .
+  ?subject <http://api.stardog.com/C_RESULT#RAW_RESULT> ?RAW_RESULT .
+  ?subject <http://api.stardog.com/C_RESULT#RESULT_TYPE> ?RESULT_TYPE .
+  ?subject <http://api.stardog.com/C_RESULT#TEST_NUMBER> ?TEST_NUMBER .
+  ?subject <http://api.stardog.com/C_RESULT#TEXT> ?TEXT .
+  ?subject <http://api.stardog.com/C_RESULT#UNITS> ?UNITS .
+  ?subject <http://api.stardog.com/C_RESULT#VALUE> ?VALUE_double .
+  ?subject rdf:type :C_RESULT
+} WHERE {
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?ENTERED_ON, xsd:dateTime) AS ?ENTERED_ON_dateTime)
+  BIND(template("http://api.stardog.com/C_RESULT/TEST_NUMBER={TEST_NUMBER};NAME={NAME}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[SUBSTANCE]
+}
+TO {
+  ?subject <http://api.stardog.com/SUBSTANCE#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/SUBSTANCE#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/SUBSTANCE#NAME> ?NAME .
+  ?subject rdf:type :SUBSTANCE
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/SUBSTANCE/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[SUPPLIER]
+}
+TO {
+  ?subject <http://api.stardog.com/SUPPLIER#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/SUPPLIER#NAME> ?NAME .
+  ?subject rdf:type :SUPPLIER
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/SUPPLIER/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_SAMPLE]
+}
+TO {
+  ?subject <http://api.stardog.com/C_SAMPLE#AUTHORISATION_NOTES> ?AUTHORISATION_NOTES .
+  ?subject <http://api.stardog.com/C_SAMPLE#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_SAMPLE#BATCH_ID> ?BATCH_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#BATCH_NAME> ?BATCH_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMPLETER> ?COMPLETER .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_COMPLETED> ?DATE_COMPLETED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_STARTED> ?DATE_STARTED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/C_SAMPLE#ID_NUMERIC> ?ID_NUMERIC .
+  ?subject <http://api.stardog.com/C_SAMPLE#ID_TEXT> ?ID_TEXT .
+  ?subject <http://api.stardog.com/C_SAMPLE#JOB_NAME> ?JOB_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOCATION_ID> ?LOCATION_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOGIN_BY> ?LOGIN_BY .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOGIN_DATE> ?LOGIN_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#PREPARATION> ?PREPARATION .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLED_DATE> ?SAMPLED_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLE_NAME> ?SAMPLE_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLE_TYPE> ?SAMPLE_TYPE .
+  ?subject <http://api.stardog.com/C_SAMPLE#STARTER> ?STARTER .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_ACTIVE_MATERIAL> ?VR_ACTIVE_MATERIAL .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_CO_BINDER> ?VR_CO_BINDER .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_INSTRUMENT> ?VR_INSTRUMENT .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_INSTRUMENT_PART> ?VR_INSTRUMENT_PART .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_SAMPLE_TYPE> ?VR_SAMPLE_TYPE .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_SOLVENT> ?VR_SOLVENT .
+  ?subject rdf:type :C_SAMPLE
+} WHERE {
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?DATE_COMPLETED, xsd:dateTime) AS ?DATE_COMPLETED_dateTime)
+  BIND(StrDt(?DATE_STARTED, xsd:dateTime) AS ?DATE_STARTED_dateTime)
+  BIND(StrDt(?LOGIN_DATE, xsd:dateTime) AS ?LOGIN_DATE_dateTime)
+  BIND(StrDt(?SAMPLED_DATE, xsd:dateTime) AS ?SAMPLED_DATE_dateTime)
+  BIND(template("http://api.stardog.com/C_SAMPLE/ID_TEXT={ID_TEXT}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[LOCATION]
+}
+TO {
+  ?subject <http://api.stardog.com/LOCATION#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/LOCATION#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/LOCATION#NAME> ?NAME .
+  ?subject <http://api.stardog.com/LOCATION#PARENT_LOCATION> ?PARENT_LOCATION .
+  ?subject rdf:type :LOCATION
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/LOCATION/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_TEST]
+}
+TO {
+  ?subject <http://api.stardog.com/C_TEST#ANALYSIS> ?ANALYSIS .
+  ?subject <http://api.stardog.com/C_TEST#AUTHORISATION_COMMENT> ?AUTHORISATION_COMMENT .
+  ?subject <http://api.stardog.com/C_TEST#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_TEST#COMPLETER> ?COMPLETER .
+  ?subject <http://api.stardog.com/C_TEST#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#DATE_COMPLETED> ?DATE_COMPLETED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#DATE_STARTED> ?DATE_STARTED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/C_TEST#HAS_INCIDENTS> ?HAS_INCIDENTS .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT> ?INSTRUMENT .
+  ?subject <http://api.stardog.com/C_TEST#LAB_EXECUTION_ID> ?LAB_EXECUTION_ID .
+  ?subject <http://api.stardog.com/C_TEST#LAB_METHOD_ID> ?LAB_METHOD_ID .
+  ?subject <http://api.stardog.com/C_TEST#SAMPLE> ?SAMPLE .
+  ?subject <http://api.stardog.com/C_TEST#STARTER> ?STARTER .
+  ?subject <http://api.stardog.com/C_TEST#TEST_COUNT> ?TEST_COUNT_integer .
+  ?subject <http://api.stardog.com/C_TEST#TEST_NUMBER> ?TEST_NUMBER .
+  ?subject <http://api.stardog.com/C_TEST#TEST_SCHEDULE> ?TEST_SCHEDULE .
+  ?subject rdf:type :C_TEST
+} WHERE {
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?DATE_COMPLETED, xsd:dateTime) AS ?DATE_COMPLETED_dateTime)
+  BIND(StrDt(?DATE_STARTED, xsd:dateTime) AS ?DATE_STARTED_dateTime)
+  BIND(StrDt(?TEST_COUNT, xsd:integer) AS ?TEST_COUNT_integer)
+  BIND(template("http://api.stardog.com/C_TEST/TEST_NUMBER={TEST_NUMBER}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[STOCK]
+}
+TO {
+  ?subject <http://api.stardog.com/STOCK#DEFAULT_LOCATION> ?DEFAULT_LOCATION .
+  ?subject <http://api.stardog.com/STOCK#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/STOCK#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/STOCK#INVENTORY_UNIT> ?INVENTORY_UNIT .
+  ?subject <http://api.stardog.com/STOCK#MODIFIABLE> ?MODIFIABLE .
+  ?subject <http://api.stardog.com/STOCK#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/STOCK#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/STOCK#NAME> ?NAME .
+  ?subject <http://api.stardog.com/STOCK#SHELF_LIFE> ?SHELF_LIFE .
+  ?subject <http://api.stardog.com/STOCK#STANDARD> ?STANDARD .
+  ?subject <http://api.stardog.com/STOCK#STOCK_TYPE> ?STOCK_TYPE .
+  ?subject <http://api.stardog.com/STOCK#SUBSTANCE> ?SUBSTANCE .
+  ?subject rdf:type :STOCK
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/STOCK/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[STOCK_BATCH]
+}
+TO {
+  ?subject <http://api.stardog.com/STOCK_BATCH#BATCH> ?BATCH .
+  ?subject <http://api.stardog.com/STOCK_BATCH#CREATED_BY> ?CREATED_BY .
+  ?subject <http://api.stardog.com/STOCK_BATCH#DATE_CREATED> ?DATE_CREATED_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/STOCK_BATCH#EXPIRY_DATE> ?EXPIRY_DATE_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#INITIAL_AMOUNT> ?INITIAL_AMOUNT_double .
+  ?subject <http://api.stardog.com/STOCK_BATCH#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/STOCK_BATCH#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#SOURCE_STOCK_BATCH_ID> ?SOURCE_STOCK_BATCH_ID .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK> ?STOCK .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_BATCH> ?STOCK_BATCH .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_BATCH_ID> ?STOCK_BATCH_ID .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_ORDER> ?STOCK_ORDER .
+  ?subject <http://api.stardog.com/STOCK_BATCH#SUPPLIER> ?SUPPLIER .
+  ?subject <http://api.stardog.com/STOCK_BATCH#UNIT> ?UNIT .
+  ?subject rdf:type :STOCK_BATCH
+} WHERE {
+  BIND(StrDt(?DATE_CREATED, xsd:dateTime) AS ?DATE_CREATED_dateTime)
+  BIND(StrDt(?EXPIRY_DATE, xsd:dateTime) AS ?EXPIRY_DATE_dateTime)
+  BIND(StrDt(?INITIAL_AMOUNT, xsd:double) AS ?INITIAL_AMOUNT_double)
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/STOCK_BATCH/STOCK_BATCH_ID={STOCK_BATCH_ID}") AS ?subject)
+}

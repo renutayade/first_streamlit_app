@@ -1,0 +1,510 @@
+PREFIX : <http://api.stardog.com/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX stardog: <tag:stardog:api:>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_RESULT]
+}
+TO {
+  ?subject <http://api.stardog.com/C_RESULT#ALLOWED_CHARACTERS> ?ALLOWED_CHARACTERS .
+  ?subject <http://api.stardog.com/C_RESULT#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_RESULT#CALCULATION> ?CALCULATION .
+  ?subject <http://api.stardog.com/C_RESULT#COLUMN_NAME> ?COLUMN_NAME .
+  ?subject <http://api.stardog.com/C_RESULT#COLUMN_NO> ?COLUMN_NO_integer .
+  ?subject <http://api.stardog.com/C_RESULT#COMMENTS> ?COMMENTS .
+  ?subject <http://api.stardog.com/C_RESULT#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_RESULT#DILUTION_FACTOR> ?DILUTION_FACTOR_double .
+  ?subject <http://api.stardog.com/C_RESULT#ENTERED_BY> ?ENTERED_BY .
+  ?subject <http://api.stardog.com/C_RESULT#ENTERED_ON> ?ENTERED_ON_dateTime .
+  ?subject <http://api.stardog.com/C_RESULT#ENTITY_CRITERIA> ?ENTITY_CRITERIA .
+  ?subject <http://api.stardog.com/C_RESULT#ENTITY_FULL_ID> ?ENTITY_FULL_ID .
+  ?subject <http://api.stardog.com/C_RESULT#FALSE_WORD> ?FALSE_WORD .
+  ?subject <http://api.stardog.com/C_RESULT#FORMULA> ?FORMULA .
+  ?subject <http://api.stardog.com/C_RESULT#GREATER_THAN_PQL> ?GREATER_THAN_PQL .
+  ?subject <http://api.stardog.com/C_RESULT#GROUP_ID> ?GROUP_ID .
+  ?subject <http://api.stardog.com/C_RESULT#HAS_INCIDENTS> ?HAS_INCIDENTS .
+  ?subject <http://api.stardog.com/C_RESULT#INSTRUMENT_USED> ?INSTRUMENT_USED .
+  ?subject <http://api.stardog.com/C_RESULT#LESS_THAN_PQL> ?LESS_THAN_PQL .
+  ?subject <http://api.stardog.com/C_RESULT#MATRIX_NAME> ?MATRIX_NAME .
+  ?subject <http://api.stardog.com/C_RESULT#MATRIX_NO> ?MATRIX_NO_integer .
+  ?subject <http://api.stardog.com/C_RESULT#MAXIMUM> ?MAXIMUM_double .
+  ?subject <http://api.stardog.com/C_RESULT#MAXIMUM_PQL> ?MAXIMUM_PQL_double .
+  ?subject <http://api.stardog.com/C_RESULT#MINIMUM> ?MINIMUM_double .
+  ?subject <http://api.stardog.com/C_RESULT#MINIMUM_PQL> ?MINIMUM_PQL_double .
+  ?subject <http://api.stardog.com/C_RESULT#NAME> ?NAME .
+  ?subject <http://api.stardog.com/C_RESULT#OLD_STATUS> ?OLD_STATUS .
+  ?subject <http://api.stardog.com/C_RESULT#ORDER_NUMBER> ?ORDER_NUMBER .
+  ?subject <http://api.stardog.com/C_RESULT#OUT_OF_RANGE> ?OUT_OF_RANGE .
+  ?subject <http://api.stardog.com/C_RESULT#OUT_OF_RANGE_LEVEL> ?OUT_OF_RANGE_LEVEL .
+  ?subject <http://api.stardog.com/C_RESULT#PLACES> ?PLACES_integer .
+  ?subject <http://api.stardog.com/C_RESULT#PQL_CALCULATION> ?PQL_CALCULATION .
+  ?subject <http://api.stardog.com/C_RESULT#RAW_RESULT> ?RAW_RESULT .
+  ?subject <http://api.stardog.com/C_RESULT#REP_CONTROL> ?REP_CONTROL .
+  ?subject <http://api.stardog.com/C_RESULT#RESULT_TYPE> ?RESULT_TYPE .
+  ?subject <http://api.stardog.com/C_RESULT#ROW_NAME> ?ROW_NAME .
+  ?subject <http://api.stardog.com/C_RESULT#ROW_NO> ?ROW_NO_integer .
+  ?subject <http://api.stardog.com/C_RESULT#SECURITY_FLAGS> ?SECURITY_FLAGS_integer .
+  ?subject <http://api.stardog.com/C_RESULT#SIG_FIGS_FILTER> ?SIG_FIGS_FILTER .
+  ?subject <http://api.stardog.com/C_RESULT#SIG_FIGS_NUMBER> ?SIG_FIGS_NUMBER_integer .
+  ?subject <http://api.stardog.com/C_RESULT#SIG_FIGS_ROUNDING> ?SIG_FIGS_ROUNDING_integer .
+  ?subject <http://api.stardog.com/C_RESULT#SPIKE_VALUE> ?SPIKE_VALUE_double .
+  ?subject <http://api.stardog.com/C_RESULT#STATUS> ?STATUS .
+  ?subject <http://api.stardog.com/C_RESULT#SURROGATE_MLP> ?SURROGATE_MLP .
+  ?subject <http://api.stardog.com/C_RESULT#SURROGATE_MLP_VERSION> ?SURROGATE_MLP_VERSION .
+  ?subject <http://api.stardog.com/C_RESULT#TEST_NUMBER> ?TEST_NUMBER .
+  ?subject <http://api.stardog.com/C_RESULT#TEXT> ?TEXT .
+  ?subject <http://api.stardog.com/C_RESULT#TRUE_WORD> ?TRUE_WORD .
+  ?subject <http://api.stardog.com/C_RESULT#TYPICAL> ?TYPICAL_double .
+  ?subject <http://api.stardog.com/C_RESULT#UNITS> ?UNITS .
+  ?subject <http://api.stardog.com/C_RESULT#VALUE> ?VALUE_double .
+  ?subject <http://api.stardog.com/C_RESULT#WORKFLOW_NODE> ?WORKFLOW_NODE .
+  ?subject rdf:type :C_RESULT
+} WHERE {
+  BIND(StrDt(?COLUMN_NO, xsd:integer) AS ?COLUMN_NO_integer)
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?DILUTION_FACTOR, xsd:double) AS ?DILUTION_FACTOR_double)
+  BIND(StrDt(?ENTERED_ON, xsd:dateTime) AS ?ENTERED_ON_dateTime)
+  BIND(StrDt(?MATRIX_NO, xsd:integer) AS ?MATRIX_NO_integer)
+  BIND(StrDt(?MAXIMUM, xsd:double) AS ?MAXIMUM_double)
+  BIND(StrDt(?MAXIMUM_PQL, xsd:double) AS ?MAXIMUM_PQL_double)
+  BIND(StrDt(?MINIMUM, xsd:double) AS ?MINIMUM_double)
+  BIND(StrDt(?MINIMUM_PQL, xsd:double) AS ?MINIMUM_PQL_double)
+  BIND(StrDt(?PLACES, xsd:integer) AS ?PLACES_integer)
+  BIND(StrDt(?ROW_NO, xsd:integer) AS ?ROW_NO_integer)
+  BIND(StrDt(?SECURITY_FLAGS, xsd:integer) AS ?SECURITY_FLAGS_integer)
+  BIND(StrDt(?SIG_FIGS_NUMBER, xsd:integer) AS ?SIG_FIGS_NUMBER_integer)
+  BIND(StrDt(?SIG_FIGS_ROUNDING, xsd:integer) AS ?SIG_FIGS_ROUNDING_integer)
+  BIND(StrDt(?SPIKE_VALUE, xsd:double) AS ?SPIKE_VALUE_double)
+  BIND(StrDt(?TYPICAL, xsd:double) AS ?TYPICAL_double)
+  BIND(StrDt(?VALUE, xsd:double) AS ?VALUE_double)
+  BIND(template("http://api.stardog.com/C_RESULT/TEST_NUMBER={TEST_NUMBER};NAME={NAME}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[SUBSTANCE]
+}
+TO {
+  ?subject <http://api.stardog.com/SUBSTANCE#DEFINITION_TYPE> ?DEFINITION_TYPE .
+  ?subject <http://api.stardog.com/SUBSTANCE#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/SUBSTANCE#DISPOSAL_INSTRUCTIONS> ?DISPOSAL_INSTRUCTIONS .
+  ?subject <http://api.stardog.com/SUBSTANCE#FLAMMABILITY> ?FLAMMABILITY .
+  ?subject <http://api.stardog.com/SUBSTANCE#GHS_SIGNAL_WORD> ?GHS_SIGNAL_WORD .
+  ?subject <http://api.stardog.com/SUBSTANCE#GROUP_ID> ?GROUP_ID .
+  ?subject <http://api.stardog.com/SUBSTANCE#HANDLING_INSTRUCTIONS> ?HANDLING_INSTRUCTIONS .
+  ?subject <http://api.stardog.com/SUBSTANCE#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/SUBSTANCE#HEALTH> ?HEALTH .
+  ?subject <http://api.stardog.com/SUBSTANCE#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/SUBSTANCE#INSTABILITY> ?INSTABILITY .
+  ?subject <http://api.stardog.com/SUBSTANCE#MODIFIABLE> ?MODIFIABLE .
+  ?subject <http://api.stardog.com/SUBSTANCE#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/SUBSTANCE#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/SUBSTANCE#MOLECULE> ?MOLECULE .
+  ?subject <http://api.stardog.com/SUBSTANCE#MSDS> ?MSDS .
+  ?subject <http://api.stardog.com/SUBSTANCE#NAME> ?NAME .
+  ?subject <http://api.stardog.com/SUBSTANCE#REMOVEFLAG> ?REMOVEFLAG .
+  ?subject <http://api.stardog.com/SUBSTANCE#SDS> ?SDS .
+  ?subject <http://api.stardog.com/SUBSTANCE#SPECIAL> ?SPECIAL .
+  ?subject <http://api.stardog.com/SUBSTANCE#STORAGE_INSTRUCTIONS> ?STORAGE_INSTRUCTIONS .
+  ?subject rdf:type :SUBSTANCE
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/SUBSTANCE/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[SUPPLIER]
+}
+TO {
+  ?subject <http://api.stardog.com/SUPPLIER#ADDRESS1> ?ADDRESS1 .
+  ?subject <http://api.stardog.com/SUPPLIER#ADDRESS2> ?ADDRESS2 .
+  ?subject <http://api.stardog.com/SUPPLIER#CATEGORY> ?CATEGORY .
+  ?subject <http://api.stardog.com/SUPPLIER#CITY> ?CITY .
+  ?subject <http://api.stardog.com/SUPPLIER#CONTACT> ?CONTACT .
+  ?subject <http://api.stardog.com/SUPPLIER#COUNTRY> ?COUNTRY .
+  ?subject <http://api.stardog.com/SUPPLIER#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/SUPPLIER#EMAIL> ?EMAIL .
+  ?subject <http://api.stardog.com/SUPPLIER#FAX> ?FAX .
+  ?subject <http://api.stardog.com/SUPPLIER#GROUP_ID> ?GROUP_ID .
+  ?subject <http://api.stardog.com/SUPPLIER#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/SUPPLIER#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/SUPPLIER#LOGO_BLOB> ?LOGO_BLOB .
+  ?subject <http://api.stardog.com/SUPPLIER#MODIFIABLE> ?MODIFIABLE .
+  ?subject <http://api.stardog.com/SUPPLIER#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/SUPPLIER#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/SUPPLIER#NAME> ?NAME .
+  ?subject <http://api.stardog.com/SUPPLIER#PHONE_NUM> ?PHONE_NUM .
+  ?subject <http://api.stardog.com/SUPPLIER#RATING> ?RATING .
+  ?subject <http://api.stardog.com/SUPPLIER#REMOVEFLAG> ?REMOVEFLAG .
+  ?subject <http://api.stardog.com/SUPPLIER#STATE_COUNTY> ?STATE_COUNTY .
+  ?subject <http://api.stardog.com/SUPPLIER#WEB_PAGE> ?WEB_PAGE .
+  ?subject <http://api.stardog.com/SUPPLIER#ZIP_POSTALCODE> ?ZIP_POSTALCODE .
+  ?subject rdf:type :SUPPLIER
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/SUPPLIER/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_SAMPLE]
+}
+TO {
+  ?subject <http://api.stardog.com/C_SAMPLE#AUTHORISATION_NOTES> ?AUTHORISATION_NOTES .
+  ?subject <http://api.stardog.com/C_SAMPLE#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_SAMPLE#AUTO_VALIDATE> ?AUTO_VALIDATE .
+  ?subject <http://api.stardog.com/C_SAMPLE#BATCH_ID> ?BATCH_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#BATCH_NAME> ?BATCH_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#CERTIFICATE> ?CERTIFICATE .
+  ?subject <http://api.stardog.com/C_SAMPLE#CERT_ID> ?CERT_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#CERT_TEMPLATE_ID> ?CERT_TEMPLATE_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#CERT_TEMPLATE_VERSION> ?CERT_TEMPLATE_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#CERT_VERSION> ?CERT_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMMENTS> ?COMMENTS .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMPARED> ?COMPARED .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMPLETER> ?COMPLETER .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMPOSITE_STATUS> ?COMPOSITE_STATUS .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMP_PROD_GRADE> ?COMP_PROD_GRADE .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMP_PROD_NAME> ?COMP_PROD_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#COMP_PROD_VER> ?COMP_PROD_VER .
+  ?subject <http://api.stardog.com/C_SAMPLE#CUSTOMER_ID> ?CUSTOMER_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#CUSTOMER_PROJECT> ?CUSTOMER_PROJECT .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATERESAVAIL> ?DATERESAVAIL_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATERESREQ> ?DATERESREQ_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_COMPLETED> ?DATE_COMPLETED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DATE_STARTED> ?DATE_STARTED_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/C_SAMPLE#DYNAMIC_PRODUCT> ?DYNAMIC_PRODUCT .
+  ?subject <http://api.stardog.com/C_SAMPLE#ENTITY_TEMPLATE_ID> ?ENTITY_TEMPLATE_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#ENTITY_TEMPLATE_VERSION> ?ENTITY_TEMPLATE_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#EXTERNAL_ID> ?EXTERNAL_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#EXTERNAL_ID_DUPLICATE> ?EXTERNAL_ID_DUPLICATE .
+  ?subject <http://api.stardog.com/C_SAMPLE#GRADE_CODE> ?GRADE_CODE .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAS_COMPOSITE> ?HAS_COMPOSITE .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAS_INCIDENTS> ?HAS_INCIDENTS .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAS_NOTEBOOK_LINK> ?HAS_NOTEBOOK_LINK .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAS_SPLIT> ?HAS_SPLIT .
+  ?subject <http://api.stardog.com/C_SAMPLE#HAZARD> ?HAZARD .
+  ?subject <http://api.stardog.com/C_SAMPLE#ID_NUMERIC> ?ID_NUMERIC .
+  ?subject <http://api.stardog.com/C_SAMPLE#ID_TEXT> ?ID_TEXT .
+  ?subject <http://api.stardog.com/C_SAMPLE#INSPECTION_HEADER> ?INSPECTION_HEADER .
+  ?subject <http://api.stardog.com/C_SAMPLE#INVOICED> ?INVOICED .
+  ?subject <http://api.stardog.com/C_SAMPLE#INVOICE_NUMBER> ?INVOICE_NUMBER .
+  ?subject <http://api.stardog.com/C_SAMPLE#IS_COMPOSITE> ?IS_COMPOSITE .
+  ?subject <http://api.stardog.com/C_SAMPLE#IS_SPLIT> ?IS_SPLIT .
+  ?subject <http://api.stardog.com/C_SAMPLE#JOB_NAME> ?JOB_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#LAB_EXECUTION_ID> ?LAB_EXECUTION_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#LAB_METHOD_ID> ?LAB_METHOD_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#LAB_METHOD_OUTSTANDING> ?LAB_METHOD_OUTSTANDING .
+  ?subject <http://api.stardog.com/C_SAMPLE#LAB_METHOD_VERSION> ?LAB_METHOD_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#LINK_NUMBER> ?LINK_NUMBER_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOCATION_ID> ?LOCATION_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOGIN_BY> ?LOGIN_BY .
+  ?subject <http://api.stardog.com/C_SAMPLE#LOGIN_DATE> ?LOGIN_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#OLD_STATUS> ?OLD_STATUS .
+  ?subject <http://api.stardog.com/C_SAMPLE#ON_SPEC> ?ON_SPEC .
+  ?subject <http://api.stardog.com/C_SAMPLE#ON_WKS> ?ON_WKS .
+  ?subject <http://api.stardog.com/C_SAMPLE#ORIGINAL_SAMPLE> ?ORIGINAL_SAMPLE .
+  ?subject <http://api.stardog.com/C_SAMPLE#PREPARATION> ?PREPARATION .
+  ?subject <http://api.stardog.com/C_SAMPLE#PRICE_OPTION> ?PRICE_OPTION .
+  ?subject <http://api.stardog.com/C_SAMPLE#PRIORITY> ?PRIORITY_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#PRODUCT> ?PRODUCT .
+  ?subject <http://api.stardog.com/C_SAMPLE#PRODUCT_VERSION> ?PRODUCT_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#PROJECT_ID> ?PROJECT_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#RECD_DATE> ?RECD_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#REPLICATE_LINK_NO> ?REPLICATE_LINK_NO_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_ASSOCIATED_JOB_NAME> ?RETAIN_ASSOCIATED_JOB_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_ASSOCIATED_SAMPLE_ID> ?RETAIN_ASSOCIATED_SAMPLE_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_DISPOSAL_DATE> ?RETAIN_DISPOSAL_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_LAST_TEST_DATE> ?RETAIN_LAST_TEST_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_NEXT_TEST_DATE> ?RETAIN_NEXT_TEST_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_TEST_PLAN_ID> ?RETAIN_TEST_PLAN_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_TEST_PLAN_VERSION> ?RETAIN_TEST_PLAN_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#RETAIN_UNTIL_DATE> ?RETAIN_UNTIL_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#RE_SAMPLED> ?RE_SAMPLED .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLED_DATE> ?SAMPLED_DATE_dateTime .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLE_NAME> ?SAMPLE_NAME .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLE_TYPE> ?SAMPLE_TYPE .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLING_POINT> ?SAMPLING_POINT .
+  ?subject <http://api.stardog.com/C_SAMPLE#SAMPLING_PROCEDURE> ?SAMPLING_PROCEDURE .
+  ?subject <http://api.stardog.com/C_SAMPLE#SCHEDULE> ?SCHEDULE .
+  ?subject <http://api.stardog.com/C_SAMPLE#SOW_GUID> ?SOW_GUID .
+  ?subject <http://api.stardog.com/C_SAMPLE#SOW_ITEM_ID> ?SOW_ITEM_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#SOW_VERSION> ?SOW_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#STANDARD> ?STANDARD .
+  ?subject <http://api.stardog.com/C_SAMPLE#STANDARD_ID> ?STANDARD_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#STANDARD_TYPE> ?STANDARD_TYPE .
+  ?subject <http://api.stardog.com/C_SAMPLE#STANDARD_VERSION> ?STANDARD_VERSION .
+  ?subject <http://api.stardog.com/C_SAMPLE#STARTER> ?STARTER .
+  ?subject <http://api.stardog.com/C_SAMPLE#STATUS> ?STATUS .
+  ?subject <http://api.stardog.com/C_SAMPLE#SUBSTANCE> ?SUBSTANCE .
+  ?subject <http://api.stardog.com/C_SAMPLE#TEMPLATE_ID> ?TEMPLATE_ID .
+  ?subject <http://api.stardog.com/C_SAMPLE#TESTS_TO_DO> ?TESTS_TO_DO_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#TEST_SCHEDULE> ?TEST_SCHEDULE .
+  ?subject <http://api.stardog.com/C_SAMPLE#TOTAL_ELEMENTS> ?TOTAL_ELEMENTS_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_ACTIVE_MATERIAL> ?VR_ACTIVE_MATERIAL .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_ADDITIVE> ?VR_ADDITIVE .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_ANALYST> ?VR_ANALYST .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_BINDER> ?VR_BINDER .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_CARBON_ADDITIVE1> ?VR_CARBON_ADDITIVE1 .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_CARBON_ADDITIVE2> ?VR_CARBON_ADDITIVE2 .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_CO_BINDER> ?VR_CO_BINDER .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_INSTRUMENT> ?VR_INSTRUMENT .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_INSTRUMENT_PART> ?VR_INSTRUMENT_PART .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_PHASE> ?VR_PHASE_integer .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_SAMPLE_TYPE> ?VR_SAMPLE_TYPE .
+  ?subject <http://api.stardog.com/C_SAMPLE#VR_SOLVENT> ?VR_SOLVENT .
+  ?subject <http://api.stardog.com/C_SAMPLE#WORKFLOW_NODE> ?WORKFLOW_NODE .
+  ?subject rdf:type :C_SAMPLE
+} WHERE {
+  BIND(StrDt(?DATERESAVAIL, xsd:dateTime) AS ?DATERESAVAIL_dateTime)
+  BIND(StrDt(?DATERESREQ, xsd:dateTime) AS ?DATERESREQ_dateTime)
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?DATE_COMPLETED, xsd:dateTime) AS ?DATE_COMPLETED_dateTime)
+  BIND(StrDt(?DATE_STARTED, xsd:dateTime) AS ?DATE_STARTED_dateTime)
+  BIND(StrDt(?LINK_NUMBER, xsd:integer) AS ?LINK_NUMBER_integer)
+  BIND(StrDt(?LOGIN_DATE, xsd:dateTime) AS ?LOGIN_DATE_dateTime)
+  BIND(StrDt(?PRIORITY, xsd:integer) AS ?PRIORITY_integer)
+  BIND(StrDt(?RECD_DATE, xsd:dateTime) AS ?RECD_DATE_dateTime)
+  BIND(StrDt(?REPLICATE_LINK_NO, xsd:integer) AS ?REPLICATE_LINK_NO_integer)
+  BIND(StrDt(?RETAIN_DISPOSAL_DATE, xsd:dateTime) AS ?RETAIN_DISPOSAL_DATE_dateTime)
+  BIND(StrDt(?RETAIN_LAST_TEST_DATE, xsd:dateTime) AS ?RETAIN_LAST_TEST_DATE_dateTime)
+  BIND(StrDt(?RETAIN_NEXT_TEST_DATE, xsd:dateTime) AS ?RETAIN_NEXT_TEST_DATE_dateTime)
+  BIND(StrDt(?RETAIN_UNTIL_DATE, xsd:dateTime) AS ?RETAIN_UNTIL_DATE_dateTime)
+  BIND(StrDt(?SAMPLED_DATE, xsd:dateTime) AS ?SAMPLED_DATE_dateTime)
+  BIND(StrDt(?TESTS_TO_DO, xsd:integer) AS ?TESTS_TO_DO_integer)
+  BIND(StrDt(?TOTAL_ELEMENTS, xsd:integer) AS ?TOTAL_ELEMENTS_integer)
+  BIND(StrDt(?VR_PHASE, xsd:integer) AS ?VR_PHASE_integer)
+  BIND(template("http://api.stardog.com/C_SAMPLE/ID_TEXT={ID_TEXT}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[LOCATION]
+}
+TO {
+  ?subject <http://api.stardog.com/LOCATION#ASSIGNABLE> ?ASSIGNABLE .
+  ?subject <http://api.stardog.com/LOCATION#AVAILABLE_CAPACITY> ?AVAILABLE_CAPACITY_double .
+  ?subject <http://api.stardog.com/LOCATION#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/LOCATION#ENTITY_TEMPLATE_ID> ?ENTITY_TEMPLATE_ID .
+  ?subject <http://api.stardog.com/LOCATION#ENTITY_TEMPLATE_VERSION> ?ENTITY_TEMPLATE_VERSION .
+  ?subject <http://api.stardog.com/LOCATION#FULL> ?FULL .
+  ?subject <http://api.stardog.com/LOCATION#GROUP_ID> ?GROUP_ID .
+  ?subject <http://api.stardog.com/LOCATION#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/LOCATION#ICON> ?ICON .
+  ?subject <http://api.stardog.com/LOCATION#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/LOCATION#LATITUDE> ?LATITUDE_double .
+  ?subject <http://api.stardog.com/LOCATION#LOCATION_TYPE> ?LOCATION_TYPE .
+  ?subject <http://api.stardog.com/LOCATION#LONGITUDE> ?LONGITUDE_double .
+  ?subject <http://api.stardog.com/LOCATION#MODIFIABLE> ?MODIFIABLE .
+  ?subject <http://api.stardog.com/LOCATION#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/LOCATION#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/LOCATION#NAME> ?NAME .
+  ?subject <http://api.stardog.com/LOCATION#ORDER_NUMBER> ?ORDER_NUMBER .
+  ?subject <http://api.stardog.com/LOCATION#PARENT_LOCATION> ?PARENT_LOCATION .
+  ?subject <http://api.stardog.com/LOCATION#REMOVEFLAG> ?REMOVEFLAG .
+  ?subject <http://api.stardog.com/LOCATION#STORAGE_CAPACITY> ?STORAGE_CAPACITY_double .
+  ?subject <http://api.stardog.com/LOCATION#STORAGE_QUANTITY> ?STORAGE_QUANTITY_double .
+  ?subject <http://api.stardog.com/LOCATION#STORAGE_TYPE> ?STORAGE_TYPE .
+  ?subject <http://api.stardog.com/LOCATION#STORAGE_UNIT> ?STORAGE_UNIT .
+  ?subject rdf:type :LOCATION
+} WHERE {
+  BIND(StrDt(?AVAILABLE_CAPACITY, xsd:double) AS ?AVAILABLE_CAPACITY_double)
+  BIND(StrDt(?LATITUDE, xsd:double) AS ?LATITUDE_double)
+  BIND(StrDt(?LONGITUDE, xsd:double) AS ?LONGITUDE_double)
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(StrDt(?STORAGE_CAPACITY, xsd:double) AS ?STORAGE_CAPACITY_double)
+  BIND(StrDt(?STORAGE_QUANTITY, xsd:double) AS ?STORAGE_QUANTITY_double)
+  BIND(template("http://api.stardog.com/LOCATION/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[C_TEST]
+}
+TO {
+  ?subject <http://api.stardog.com/C_TEST#ANALYSIS> ?ANALYSIS .
+  ?subject <http://api.stardog.com/C_TEST#ANALYSIS_VERSION> ?ANALYSIS_VERSION .
+  ?subject <http://api.stardog.com/C_TEST#AUTHORISATION_COMMENT> ?AUTHORISATION_COMMENT .
+  ?subject <http://api.stardog.com/C_TEST#AUTHORISER> ?AUTHORISER .
+  ?subject <http://api.stardog.com/C_TEST#AUTO_VALIDATE> ?AUTO_VALIDATE .
+  ?subject <http://api.stardog.com/C_TEST#COMMENTS> ?COMMENTS .
+  ?subject <http://api.stardog.com/C_TEST#COMPLETER> ?COMPLETER .
+  ?subject <http://api.stardog.com/C_TEST#COMPONENT_LIST> ?COMPONENT_LIST .
+  ?subject <http://api.stardog.com/C_TEST#COMPONENT_REPLICATES> ?COMPONENT_REPLICATES_integer .
+  ?subject <http://api.stardog.com/C_TEST#DATE_AUTHORISED> ?DATE_AUTHORISED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#DATE_COMPLETED> ?DATE_COMPLETED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#DATE_PREP_READY> ?DATE_PREP_READY_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#DATE_STARTED> ?DATE_STARTED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#ENTITY_TEMPLATE_ID> ?ENTITY_TEMPLATE_ID .
+  ?subject <http://api.stardog.com/C_TEST#ENTITY_TEMPLATE_VERSION> ?ENTITY_TEMPLATE_VERSION .
+  ?subject <http://api.stardog.com/C_TEST#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/C_TEST#HAS_INCIDENTS> ?HAS_INCIDENTS .
+  ?subject <http://api.stardog.com/C_TEST#HAS_RESULT_LIST> ?HAS_RESULT_LIST .
+  ?subject <http://api.stardog.com/C_TEST#INSPECTION_HEADER> ?INSPECTION_HEADER .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT> ?INSTRUMENT .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT_BATCH> ?INSTRUMENT_BATCH .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT_CATEGORY> ?INSTRUMENT_CATEGORY .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT_REQUIRED> ?INSTRUMENT_REQUIRED .
+  ?subject <http://api.stardog.com/C_TEST#INSTRUMENT_TYPE> ?INSTRUMENT_TYPE .
+  ?subject <http://api.stardog.com/C_TEST#LAB_EXECUTION_ID> ?LAB_EXECUTION_ID .
+  ?subject <http://api.stardog.com/C_TEST#LAB_METHOD_ID> ?LAB_METHOD_ID .
+  ?subject <http://api.stardog.com/C_TEST#LAB_METHOD_OUTSTANDING> ?LAB_METHOD_OUTSTANDING .
+  ?subject <http://api.stardog.com/C_TEST#LAB_METHOD_VERSION> ?LAB_METHOD_VERSION .
+  ?subject <http://api.stardog.com/C_TEST#OLD_STATUS> ?OLD_STATUS .
+  ?subject <http://api.stardog.com/C_TEST#ON_SPEC> ?ON_SPEC .
+  ?subject <http://api.stardog.com/C_TEST#ORDER_NUM> ?ORDER_NUM .
+  ?subject <http://api.stardog.com/C_TEST#PARENT_TEST> ?PARENT_TEST .
+  ?subject <http://api.stardog.com/C_TEST#PREPARATION> ?PREPARATION .
+  ?subject <http://api.stardog.com/C_TEST#PREPARATION_BATCH> ?PREPARATION_BATCH .
+  ?subject <http://api.stardog.com/C_TEST#PRICE_OPTION> ?PRICE_OPTION .
+  ?subject <http://api.stardog.com/C_TEST#REPLICATE_TEST> ?REPLICATE_TEST .
+  ?subject <http://api.stardog.com/C_TEST#SAMPLE> ?SAMPLE .
+  ?subject <http://api.stardog.com/C_TEST#SOW_GUID> ?SOW_GUID .
+  ?subject <http://api.stardog.com/C_TEST#SOW_ITEM_CHARGE_COUNT> ?SOW_ITEM_CHARGE_COUNT_integer .
+  ?subject <http://api.stardog.com/C_TEST#SOW_ITEM_CHARGE_ORDER_NUMBER> ?SOW_ITEM_CHARGE_ORDER_NUMBER .
+  ?subject <http://api.stardog.com/C_TEST#SOW_ITEM_ORDER> ?SOW_ITEM_ORDER .
+  ?subject <http://api.stardog.com/C_TEST#SOW_VERSION> ?SOW_VERSION .
+  ?subject <http://api.stardog.com/C_TEST#STARTER> ?STARTER .
+  ?subject <http://api.stardog.com/C_TEST#STATUS> ?STATUS .
+  ?subject <http://api.stardog.com/C_TEST#STAT_DOUBLE_ATT_FAIL> ?STAT_DOUBLE_ATT_FAIL .
+  ?subject <http://api.stardog.com/C_TEST#TEST_COUNT> ?TEST_COUNT_integer .
+  ?subject <http://api.stardog.com/C_TEST#TEST_MAX_END_TIME> ?TEST_MAX_END_TIME_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#TEST_MIN_END_TIME> ?TEST_MIN_END_TIME_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#TEST_NUMBER> ?TEST_NUMBER .
+  ?subject <http://api.stardog.com/C_TEST#TEST_PRIORITY> ?TEST_PRIORITY_integer .
+  ?subject <http://api.stardog.com/C_TEST#TEST_SCHEDULE> ?TEST_SCHEDULE .
+  ?subject <http://api.stardog.com/C_TEST#TEST_START_TIME> ?TEST_START_TIME_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#TEST_TIME_REMOVED> ?TEST_TIME_REMOVED_dateTime .
+  ?subject <http://api.stardog.com/C_TEST#TRIGGER_ANALYSIS> ?TRIGGER_ANALYSIS .
+  ?subject <http://api.stardog.com/C_TEST#TRIGGER_RULE> ?TRIGGER_RULE .
+  ?subject <http://api.stardog.com/C_TEST#TURNAROUND_TIME> ?TURNAROUND_TIME_integer .
+  ?subject <http://api.stardog.com/C_TEST#VALIDATION_STATUS> ?VALIDATION_STATUS .
+  ?subject <http://api.stardog.com/C_TEST#WORKFLOW_NODE> ?WORKFLOW_NODE .
+  ?subject <http://api.stardog.com/C_TEST#WORKSHEET> ?WORKSHEET .
+  ?subject <http://api.stardog.com/C_TEST#WORKSHEET_POSITION> ?WORKSHEET_POSITION_integer .
+  ?subject rdf:type :C_TEST
+} WHERE {
+  BIND(StrDt(?COMPONENT_REPLICATES, xsd:integer) AS ?COMPONENT_REPLICATES_integer)
+  BIND(StrDt(?DATE_AUTHORISED, xsd:dateTime) AS ?DATE_AUTHORISED_dateTime)
+  BIND(StrDt(?DATE_COMPLETED, xsd:dateTime) AS ?DATE_COMPLETED_dateTime)
+  BIND(StrDt(?DATE_PREP_READY, xsd:dateTime) AS ?DATE_PREP_READY_dateTime)
+  BIND(StrDt(?DATE_STARTED, xsd:dateTime) AS ?DATE_STARTED_dateTime)
+  BIND(StrDt(?SOW_ITEM_CHARGE_COUNT, xsd:integer) AS ?SOW_ITEM_CHARGE_COUNT_integer)
+  BIND(StrDt(?TEST_COUNT, xsd:integer) AS ?TEST_COUNT_integer)
+  BIND(StrDt(?TEST_MAX_END_TIME, xsd:dateTime) AS ?TEST_MAX_END_TIME_dateTime)
+  BIND(StrDt(?TEST_MIN_END_TIME, xsd:dateTime) AS ?TEST_MIN_END_TIME_dateTime)
+  BIND(StrDt(?TEST_PRIORITY, xsd:integer) AS ?TEST_PRIORITY_integer)
+  BIND(StrDt(?TEST_START_TIME, xsd:dateTime) AS ?TEST_START_TIME_dateTime)
+  BIND(StrDt(?TEST_TIME_REMOVED, xsd:dateTime) AS ?TEST_TIME_REMOVED_dateTime)
+  BIND(StrDt(?TURNAROUND_TIME, xsd:integer) AS ?TURNAROUND_TIME_integer)
+  BIND(StrDt(?WORKSHEET_POSITION, xsd:integer) AS ?WORKSHEET_POSITION_integer)
+  BIND(template("http://api.stardog.com/C_TEST/TEST_NUMBER={TEST_NUMBER}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[STOCK]
+}
+TO {
+  ?subject <http://api.stardog.com/STOCK#DEFAULT_LOCATION> ?DEFAULT_LOCATION .
+  ?subject <http://api.stardog.com/STOCK#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/STOCK#GROUP_ID> ?GROUP_ID .
+  ?subject <http://api.stardog.com/STOCK#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/STOCK#IDENTITY> ?IDENTITY .
+  ?subject <http://api.stardog.com/STOCK#INVENTORY_UNIT> ?INVENTORY_UNIT .
+  ?subject <http://api.stardog.com/STOCK#MODIFIABLE> ?MODIFIABLE .
+  ?subject <http://api.stardog.com/STOCK#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/STOCK#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/STOCK#NAME> ?NAME .
+  ?subject <http://api.stardog.com/STOCK#OPERATOR_ID> ?OPERATOR_ID .
+  ?subject <http://api.stardog.com/STOCK#PREFERRED_ORDER_AMOUNT> ?PREFERRED_ORDER_AMOUNT_double .
+  ?subject <http://api.stardog.com/STOCK#PREFERRED_ORDER_UNIT> ?PREFERRED_ORDER_UNIT .
+  ?subject <http://api.stardog.com/STOCK#PREFERRED_SUPPLIER> ?PREFERRED_SUPPLIER .
+  ?subject <http://api.stardog.com/STOCK#REMOVEFLAG> ?REMOVEFLAG .
+  ?subject <http://api.stardog.com/STOCK#REORDER_AMOUNT> ?REORDER_AMOUNT_double .
+  ?subject <http://api.stardog.com/STOCK#REORDER_ON_AMOUNT> ?REORDER_ON_AMOUNT .
+  ?subject <http://api.stardog.com/STOCK#REORDER_ON_PERCENTAGE> ?REORDER_ON_PERCENTAGE .
+  ?subject <http://api.stardog.com/STOCK#REORDER_ON_SHELF_LIFE> ?REORDER_ON_SHELF_LIFE .
+  ?subject <http://api.stardog.com/STOCK#REORDER_PERCENTAGE> ?REORDER_PERCENTAGE_double .
+  ?subject <http://api.stardog.com/STOCK#REORDER_UNIT> ?REORDER_UNIT .
+  ?subject <http://api.stardog.com/STOCK#SHELF_LIFE> ?SHELF_LIFE .
+  ?subject <http://api.stardog.com/STOCK#STANDARD> ?STANDARD .
+  ?subject <http://api.stardog.com/STOCK#STOCK_BATCH_LABEL_TEMPLATE> ?STOCK_BATCH_LABEL_TEMPLATE .
+  ?subject <http://api.stardog.com/STOCK#STOCK_TYPE> ?STOCK_TYPE .
+  ?subject <http://api.stardog.com/STOCK#SUBSTANCE> ?SUBSTANCE .
+  ?subject <http://api.stardog.com/STOCK#TARGET_AMOUNT> ?TARGET_AMOUNT_double .
+  ?subject <http://api.stardog.com/STOCK#TRACK_INVENTORY> ?TRACK_INVENTORY .
+  ?subject rdf:type :STOCK
+} WHERE {
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(StrDt(?PREFERRED_ORDER_AMOUNT, xsd:double) AS ?PREFERRED_ORDER_AMOUNT_double)
+  BIND(StrDt(?REORDER_AMOUNT, xsd:double) AS ?REORDER_AMOUNT_double)
+  BIND(StrDt(?REORDER_PERCENTAGE, xsd:double) AS ?REORDER_PERCENTAGE_double)
+  BIND(StrDt(?TARGET_AMOUNT, xsd:double) AS ?TARGET_AMOUNT_double)
+  BIND(template("http://api.stardog.com/STOCK/IDENTITY={IDENTITY}") AS ?subject)
+}
+
+;
+
+MAPPING
+FROM SQL {
+  SELECT *
+  FROM [dbo].[STOCK_BATCH]
+}
+TO {
+  ?subject <http://api.stardog.com/STOCK_BATCH#BATCH> ?BATCH .
+  ?subject <http://api.stardog.com/STOCK_BATCH#CREATED_BY> ?CREATED_BY .
+  ?subject <http://api.stardog.com/STOCK_BATCH#DATE_CREATED> ?DATE_CREATED_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#DESCRIPTION> ?DESCRIPTION .
+  ?subject <http://api.stardog.com/STOCK_BATCH#EXPIRY_DATE> ?EXPIRY_DATE_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#HAS_ATTACHMENTS> ?HAS_ATTACHMENTS .
+  ?subject <http://api.stardog.com/STOCK_BATCH#INITIAL_AMOUNT> ?INITIAL_AMOUNT_double .
+  ?subject <http://api.stardog.com/STOCK_BATCH#LOCATION> ?LOCATION .
+  ?subject <http://api.stardog.com/STOCK_BATCH#MODIFIED_BY> ?MODIFIED_BY .
+  ?subject <http://api.stardog.com/STOCK_BATCH#MODIFIED_ON> ?MODIFIED_ON_dateTime .
+  ?subject <http://api.stardog.com/STOCK_BATCH#REMOVEFLAG> ?REMOVEFLAG .
+  ?subject <http://api.stardog.com/STOCK_BATCH#SOURCE_STOCK_BATCH_ID> ?SOURCE_STOCK_BATCH_ID .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STANDARD_ID> ?STANDARD_ID .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STANDARD_VERSION> ?STANDARD_VERSION .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STATUS> ?STATUS .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK> ?STOCK .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_BATCH> ?STOCK_BATCH .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_BATCH_ID> ?STOCK_BATCH_ID .
+  ?subject <http://api.stardog.com/STOCK_BATCH#STOCK_ORDER> ?STOCK_ORDER .
+  ?subject <http://api.stardog.com/STOCK_BATCH#SUPPLIER> ?SUPPLIER .
+  ?subject <http://api.stardog.com/STOCK_BATCH#UNIT> ?UNIT .
+  ?subject rdf:type :STOCK_BATCH
+} WHERE {
+  BIND(StrDt(?DATE_CREATED, xsd:dateTime) AS ?DATE_CREATED_dateTime)
+  BIND(StrDt(?EXPIRY_DATE, xsd:dateTime) AS ?EXPIRY_DATE_dateTime)
+  BIND(StrDt(?INITIAL_AMOUNT, xsd:double) AS ?INITIAL_AMOUNT_double)
+  BIND(StrDt(?MODIFIED_ON, xsd:dateTime) AS ?MODIFIED_ON_dateTime)
+  BIND(template("http://api.stardog.com/STOCK_BATCH/STOCK_BATCH_ID={STOCK_BATCH_ID}") AS ?subject)
+}
